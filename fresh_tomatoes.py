@@ -125,8 +125,26 @@ movie_tile_content = '''
 <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
     <img src="{poster_image_url}" width="220" height="342">
     <h2>{movie_title}</h2>
+    Cast: <p>{cast}</p>
 </div>
 '''
+
+# Casts
+
+casts = '''
+    <a href="{link}">{artist}, </a>
+'''
+
+
+def create_casts(artists):
+    content = ''
+    for artist in artists:
+        content += casts.format(
+                   link=artists[artist],
+                   artist=artist
+                   )
+
+    return content
 
 
 def create_movie_tiles_content(movies):
@@ -142,10 +160,13 @@ def create_movie_tiles_content(movies):
                               else None)
 
         # Append the tile for the movie with its content filled in
+
+        cast = create_casts(movie.majorArtists)
         content += movie_tile_content.format(
             movie_title=movie.title,
             poster_image_url=movie.poster_image_url,
-            trailer_youtube_id=trailer_youtube_id
+            trailer_youtube_id=trailer_youtube_id,
+            cast=cast
         )
     return content
 

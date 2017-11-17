@@ -1,25 +1,45 @@
-class video():
-    def __init__(self, title, storyline, image, trailer, majorArtist):
+#!/usr/bin/python3
+
+
+class Video(object):
+    '''
+    Base class for video
+    '''
+    def __init__(self, title, storyline, image, trailer, majorArtists):
         self.title = title
         self.storyline = storyline
         self.poster_image_url = image
         self.trailer_youtube_url = trailer
-        self.majorArtist = majorArtist
+        self.majorArtists = majorArtists
 
 
-class movies(video):
-    def __init__(self, title, storyline, image, trailer, majorArtist, year):
-        video.__init__(self, title, storyline, image, trailer, majorArtist)
+class Movies(Video):
+    '''
+    Sub-class Movies, inheriting Video class
+    '''
+    def __init__(self, title, storyline, image, trailer, majorArtists, year):
+        super().__init__(title, storyline, image, trailer, majorArtists)
         self.year = year
 
 
-class shows(video):
-    def __init__(self, title, storyline, image, trailer, majorArtist, duration, isCurrent, currentSeason):
-        video.__init__(self, title, storyline, image, trailer, majorArtist)
+class Shows(Video):
+    '''
+    Sub-class Shows, inheriting Video class
+    '''
+    def __init__(self,
+                 title,
+                 storyline,
+                 image,
+                 trailer,
+                 majorArtists,
+                 duration,
+                 isCurrent,
+                 currentSeason):
+        super().__init__(title, storyline, image, trailer, majorArtists)
         self.duration = duration
         self.isCurrent = isCurrent
+
         if isCurrent == "Yes":
             self.currentSeason = currentSeason
-            ##self.currentEpisode = currentEpisode
         else:
             self.currentSeason = "Complete"
