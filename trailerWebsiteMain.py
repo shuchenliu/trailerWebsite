@@ -1,7 +1,9 @@
 from video import movies
 from video import shows
 import fresh_tomatoes
-##function to gather actor information
+
+# function to gather actor information
+
 def actors(*args):
     actorlist={}
     for v in args:
